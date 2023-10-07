@@ -208,7 +208,7 @@ def get_readable_message():
         button = buttons.build_menu(3)
     msg + "⌬ Bot Stats"
     msg += f"<b>┠ Tasks:</b> {tasks}{bmax_task} | <b>Uptime:</b> {currentTime}"
-    msg += f"\n<b>┠ UL:</b> {get_readable_file_size(up_speed)}/s | <b>Downloading speed:</b> {get_readable_file_size(dl_speed)}/s"
+    msg += f"\n<b>┖ UL:</b> {get_readable_file_size(up_speed)}/s | <b>Downloading speed:</b> {get_readable_file_size(dl_speed)}/s"
     return msg, button
 
 
