@@ -412,19 +412,18 @@ class MirrorLeechListener:
         user_id = self.message.from_user.id
         name, _ = await format_filename(name, user_id, isMirror=not self.isLeech)
         user_dict = user_data.get(user_id, {})
-        msg = f'{escape(name)}\n\n'
-        msg += f'<b>❅ Size: </b>{get_readable_file_size(size)}\n'
-        msg += f'<b>❅ Elapsed: </b>{get_readable_time(time() - self.message.date.timestamp())}\n'
-        msg += f'<b>❅ Mode: </b>{self.upload_details["mode"]}\n'
+        msg = f'<b><i>{escape(name)}</i></b>\n┃\n'
+        msg += f'<b>┠ Size: </b>{get_readable_file_size(size)}\n'
+        msg += f'<b>┠ Elapsed: </b>{get_readable_time(time() - self.message.date.timestamp())}\n'
+        msg += f'<b>┠ Mode: </b>{self.upload_details["mode"]}\n'
         lmsg = '<b>Files are sent. Access via links</b>'
         LOGGER.info(f'Task Done: {name}')
         buttons = ButtonMaker()
         if self.isLeech:
-            msg += f'<b>❅ Total files: </b>{folders}\n'
+            msg += f'<b>┠ Total files: </b>{folders}\n'
             if mime_type != 0:
-                msg += f'<b>❅ Corrupted files: </b>{mime_type}\n'
-            msg += f'<b>❅ Leeched by: </b>{self.tag}\n'
-            msg += f'<b>❅ User ID: </b><code>{self.message.from_user.id}</code>\n\n'
+                msg += f'<b>┠ Corrupted files: </b>{mime_type}\n'
+            msg += f'<b>┠ By: </b>{self.tag}\n | <b>ID: </b><code>{self.message.from_user.id}</code>\n\n'
             if not files:
                 if self.isPrivate:
                     msg += '<b>Files are not sent for unknown reason</b>'
@@ -470,7 +469,7 @@ class MirrorLeechListener:
                 if self.isSuperGroup:
                     btn.ibutton('View in inbox', f"aeon {user_id} botpm", 'header')
                     btn = extra_btns(btn)
-                    await sendMessage(self.message, msg + '<b>Files has been sent to your inbox</b>', btn.build_menu(1))
+                    await sendMessage(self.message, msg + '<b>➲ File(s) have been Sent to Bot PM (Private)</b>', btn.build_menu(1))
                 else:
                     await deleteMessage(self.botpmmsg)
             if self.seed:
