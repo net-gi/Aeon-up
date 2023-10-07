@@ -173,7 +173,7 @@ def get_readable_message():
             msg += f"\n<b>┠ Status:</b> {download.status()} | <b>ETA:</b> {download.eta()}"
             msg += f"\n<b>┠ Speed:</b> {download.speed()} | <b>Elapsed:</b> {get_readable_time(time() - download.message.date.timestamp())}"
             msg += f"\n<b>┠ Mode:</b> {download.upload_details['mode']}"
-            msg += f"\n<b>┠ User:</b> {source.download()}"
+            msg += f"\n<b>┠ User:</b> {source(download)}"
             if hasattr(download, 'seeders_num'):
                 try:
                     msg += f"\n<b>┠ Seeders:</b> {download.seeders_num()} | <b>Leechers:</b> {download.leechers_num()}"
